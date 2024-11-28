@@ -3,11 +3,16 @@ use std::env;
 use std::fs;
 use std::path::Path;
 
+const OUTPUT_DELIMITER: u8 = b',';
+const RAW_DELIMITER: u8 = b':';
+
 fn concatenate_csv_files(
     input_folder: &str,
     output_file: &str,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    let mut writer = WriterBuilder::new().from_path(output_file)?;
+    let mut writer = WriterBuilder::new()
+        .delimiter(OUTPUT_DELIMITER)
+        .from_path(output_file)?;
     let mut first_file = true;
 
     // Iterate through files in the folder
@@ -17,7 +22,9 @@ fn concatenate_csv_files(
 
         // Skip non-CSV files
         if path.extension().map_or(false, |ext| ext == "csv") {
-            let mut reader = ReaderBuilder::new().from_path(&path)?;
+            let mut reader = ReaderBuilder::new()
+                .delimiter(RAW_DELIMITER)
+                .from_path(&path)?;
 
             // Write headers only once
             if first_file {
