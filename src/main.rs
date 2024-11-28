@@ -12,13 +12,13 @@ const COL_WIDTH: &str = "Width";
 const COL_OBJECT_NAME: &str = "IPTC:Object Name";
 const COL_SUP_CATEGORY: &str = "IPTC:Sup. Category";
 const COL_SOURCE: &str = "IPTC:Source";
+const OPTIONAL_COLS: &[&str] = &["IPTC:Caption"];
 
 const CATEGORY: &str = "MQB - Iconotheque";
 const SOURCE: &str = "Fichier produit par Arkhenum";
 const MIN_SIZE: f64 = 2.0; // in Mio
 const MAX_SIZE: f64 = 4.0; // in Mio
 const WIDTH_DPI: &str = "3200";
-
 
 fn concatenate_csv_files(
     input_folder: &str,
@@ -83,7 +83,7 @@ fn validate_csv(file_path: &Path) -> Result<(), Box<dyn std::error::Error>> {
         let mut errors = Vec::new();
 
         for (i, value) in record.iter().enumerate() {
-            if value.trim().is_empty() {
+            if value.trim().is_empty() && !OPTIONAL_COLS.contains(&headers.get(i).unwrap()) {
                 errors.push(format!("Field '{}' is empty", headers.get(i).unwrap()));
             }
         }
