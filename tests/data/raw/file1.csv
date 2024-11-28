@@ -1,4 +1,4 @@
-Filename:Size:Width:"IPTC:ObjectName":"IPTC:Sup.":toto:"IPTC:Source"
-1:2.5 Mio:3200 DPI:1_01: MQB - Iconotheque:cheval:evian
-2:2.545 Mio:3200 DPI:2_01: MQB - Iconotheque:voiture:evian
-3:3.5 Mio:3200 DPI:3_01: MQB - Iconotheque:chat:evian
+Filename:Size:Width:"IPTC:Object Name":"IPTC:Sup. Category":toto:"IPTC:Source"
+1_01:2.5 Mio:3200:1: MQB - Iconotheque:cheval:Fichier produit par Arkhenum
+2_01:2.545 Mio:3200:2: MQB - Iconotheque:voiture:Fichier produit par Arkhenum
+3_01:3.5 Mio:3200:3: MQB - Iconotheque:chat:Fichier produit par Arkhenum

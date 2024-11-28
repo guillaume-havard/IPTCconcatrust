@@ -3,21 +3,22 @@ use std::env;
 use std::fs;
 use std::path::Path;
 
-const OUTPUT_DELIMITER: u8 = b',';
 const RAW_DELIMITER: u8 = b':';
-
-const CATEGORY: &str = "MQB - Iconotheque";
-const SOURCE: &str = "evian";
-const MIN_SIZE: f64 = 2.0; // in Mio
-const MAX_SIZE: f64 = 4.0; // in Mio
-const WIDTH_DPI: &str = "3200 DPI";
+const OUTPUT_DELIMITER: u8 = b';';
 
 const COL_FILENAME: &str = "Filename";
 const COL_SIZE: &str = "Size";
 const COL_WIDTH: &str = "Width";
-const COL_OBJECT_NAME: &str = "IPTC:ObjectName";
-const COL_SUP_CATEGORY: &str = "IPTC:Sup.";
+const COL_OBJECT_NAME: &str = "IPTC:Object Name";
+const COL_SUP_CATEGORY: &str = "IPTC:Sup. Category";
 const COL_SOURCE: &str = "IPTC:Source";
+
+const CATEGORY: &str = "MQB - Iconotheque";
+const SOURCE: &str = "Fichier produit par Arkhenum";
+const MIN_SIZE: f64 = 2.0; // in Mio
+const MAX_SIZE: f64 = 4.0; // in Mio
+const WIDTH_DPI: &str = "3200";
+
 
 fn concatenate_csv_files(
     input_folder: &str,
@@ -115,9 +116,9 @@ fn validate_csv(file_path: &Path) -> Result<(), Box<dyn std::error::Error>> {
         }
 
         let object_name = record[col_object_name].trim();
-        let object_name_prefix = object_name.split('_').next().unwrap_or("");
         let filename = record[col_filename].trim();
-        if object_name_prefix != filename {
+        let filename_prefix = filename.split('_').next().unwrap_or("");
+        if filename_prefix != object_name {
             errors.push(format!(
                 "Object name '{}' does not match filename '{}'",
                 object_name.trim(),
