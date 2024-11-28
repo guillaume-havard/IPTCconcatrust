@@ -17,7 +17,7 @@ const OPTIONAL_COLS: &[&str] = &["IPTC:Caption"];
 const CATEGORY: &str = "MQB - Iconotheque";
 const SOURCE: &str = "Fichier produit par Arkhenum";
 const MIN_SIZE: f64 = 2.0; // in Mio
-const MAX_SIZE: f64 = 4.0; // in Mio
+const MAX_SIZE: f64 = 7.0; // in Mio
 const WIDTH_DPI: &str = "3200";
 
 fn concatenate_csv_files(
